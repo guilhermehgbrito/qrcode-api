@@ -4,9 +4,16 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
+django = "<4.0"
 djangorestframework = "*"
 qrcode = "*"
+celery = "*"
+gunicorn = "*"
+psycopg2 = "*"
+django-celery-results = "*"
+redis = "*"
+drf-yasg = "*"
+python-decouple = "*"
 
 [dev-packages]
 flake8 = "*"
