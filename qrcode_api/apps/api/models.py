@@ -17,5 +17,5 @@ class QrCode(models.Model):
     # If the QR Code still actives in storage
     active = models.BooleanField(default=True)
 
-    def __str__(self):
+    def __str__(self):  # pragma: no cover
         return str(self.id)
