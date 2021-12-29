@@ -16,6 +16,7 @@ drf-yasg = "*"
 python-decouple = "*"
 coverage = "*"
 dj-database-url = "*"
+whitenoise = "*"
 
 [dev-packages]
 flake8 = "*"
