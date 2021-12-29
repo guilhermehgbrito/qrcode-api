@@ -13,6 +13,9 @@ def generate_qr_code(data: str) -> QrCode:
     img = qrcode.make(data)
     img_name = f"qrcode{datetime.now().isoformat().replace(':', '')}.png"
     img_path = settings.MEDIA_ROOT / img_name
+
+    if not settings.MEDIA_ROOT.exists():
+        settings.MEDIA_ROOT.mkdir()
     with open(img_path, "wb") as f:
         img.save(f)
 
