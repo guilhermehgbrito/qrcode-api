@@ -17,6 +17,7 @@ python-decouple = "*"
 coverage = "*"
 dj-database-url = "*"
 whitenoise = "*"
+pillow = "*"
 
 [dev-packages]
 flake8 = "*"
