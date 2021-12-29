@@ -15,6 +15,7 @@ redis = "*"
 drf-yasg = "*"
 python-decouple = "*"
 coverage = "*"
+dj-database-url = "*"
 
 [dev-packages]
 flake8 = "*"

@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 
+import dj_database_url
 from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -80,12 +81,7 @@ WSGI_APPLICATION = "qrcode_api.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-    }
-}
+DATABASES = {"default": dj_database_url.config()}
 
 
 # Password validation
@@ -128,7 +124,7 @@ STATIC_URL = "/static/"
 MEDIA_URL = "/media/"
 MEDIA_ROOT = PROJECT_DIR / "media"
 
-CELERY_BROKER_URL = "redis://localhost:6379"
+CELERY_BROKER_URL = config("REDIS_URL")
 CELERY_RESULT_BACKEND = "django-db"
 
 # Default primary key field type
