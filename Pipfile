@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "<4.0"
+djangorestframework = "*"
+qrcode = "*"
+celery = {extras = ["pytest"], version = "*"}
+gunicorn = "*"
+psycopg2 = "*"
+django-celery-results = "*"
+redis = "*"
+drf-yasg = "*"
+python-decouple = "*"
+coverage = "*"
+dj-database-url = "*"
+
+[dev-packages]
+flake8 = "*"
+
+[requires]
+python_version = "3.10"
