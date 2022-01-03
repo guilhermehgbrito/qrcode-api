@@ -1,6 +1,5 @@
 import logging
 
-from django.conf import settings
 from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import render
 from qrcode_api.apps.api.utils import generate_qr_code
@@ -22,13 +21,13 @@ def qrcode_api(request: HttpRequest) -> JsonResponse:
     if data is not None:
         qr = generate_qr_code(data)
 
-        delete_qrcode_task.delay(qr.id)
+        delete_qrcode_task.apply_async(args=[qr.id], countdown=expiration_time)
         logger.info(f"Task called: {qr.id}")
 
         return JsonResponse(
             {
                 "status": "success",
-                "img_url": f"{settings.MEDIA_URL}{qr.path}",
+                "img_url": qr.image.url,
                 "message": "This QR code will be expired "
                 + f"in {expiration_time/60:.0f} minute(s).",
             }

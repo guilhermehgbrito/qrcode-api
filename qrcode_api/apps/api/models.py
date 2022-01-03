@@ -7,7 +7,7 @@ class QrCode(models.Model):
     """
 
     # Path to the QR Code
-    path = models.CharField(max_length=255)
+    image = models.ImageField(upload_to="qrcodes", null=True)
     # The description of the QR Code
     data = models.TextField(max_length=2048)
     # The date the QR Code was created
