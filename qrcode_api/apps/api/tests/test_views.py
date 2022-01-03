@@ -1,3 +1,4 @@
+import requests
 from django.conf import settings
 from django.test import Client, TestCase, override_settings
 from qrcode_api.apps.api.models import QrCode
@@ -22,10 +23,9 @@ class ViewsTestCase(TestCase):
     )
     def test_qrcode_api_qr_code_generation_success(self):
         response = self.client.post("/api/qr", {"data": "test"})
+        image_reponse = requests.get(response.json()["img_url"])
 
-        img_path = settings.PROJECT_DIR / response.json()["img_url"][1:]
-
-        self.assertTrue(img_path.exists())
+        self.assertTrue(image_reponse.status_code == status.HTTP_200_OK)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.json()["status"], "success")
 

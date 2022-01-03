@@ -18,6 +18,8 @@ coverage = "*"
 dj-database-url = "*"
 whitenoise = "*"
 pillow = "*"
+django-storages = "*"
+boto3 = "*"
 
 [dev-packages]
 flake8 = "*"

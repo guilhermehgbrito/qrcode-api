@@ -82,7 +82,13 @@ WSGI_APPLICATION = "qrcode_api.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {"default": dj_database_url.config()}
+# DATABASES = {"default": dj_database_url.config()}
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
+}
 
 
 # Password validation
@@ -160,9 +166,16 @@ LOGGING = {
     },
     "root": {
         "handlers": ["console"],
-        "level": "DEBUG",
+        "level": "DEBUG" if DEBUG else "ERROR",
     },
     "loggers": {
         "tasks": {"handlers": ["file"]},
     },
 }
+
+AWS_ACCESS_KEY_ID = config("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = config("AWS_SECRET_ACCESS_KEY")
+
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+STATICFILES_STORAGE = "storages.backends.s3boto3.S3StaticStorage"
+AWS_STORAGE_BUCKET_NAME = "qrcodeapi"
